@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2013-2016, The SeedStack authors <http://seedstack.org>
+/*
+ * Copyright © 2013-2018, The SeedStack authors <http://seedstack.org>
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -7,9 +7,9 @@
  */
 package org.seedstack.i18n.internal.rest;
 
-import com.jayway.restassured.response.Response;
+import io.restassured.response.Response;
+import java.util.UUID;
 import org.assertj.core.api.Assertions;
-import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -19,8 +19,6 @@ import org.seedstack.i18n.rest.internal.translation.TranslationRepresentation;
 import org.seedstack.i18n.rest.internal.translation.TranslationValueRepresentation;
 import org.seedstack.i18n.shared.AbstractI18nRestIT;
 import org.skyscreamer.jsonassert.JSONAssert;
-
-import java.util.UUID;
 
 /**
  * @author pierre.thirouin@ext.mpsa.com
@@ -39,15 +37,14 @@ public class TranslationsResourceIT extends AbstractI18nRestIT {
         keyName = UUID.randomUUID().toString();
 
         KeyRepresentation keyRepresentation = new KeyRepresentation(keyName, EN, "translation", "comment");
-        jsonKey = new JSONObject(keyRepresentation);
+        jsonKey = (JSONObject) JSONObject.wrap(keyRepresentation);
 
         TranslationRepresentation keyTranslation = new TranslationRepresentation(keyName, "comment");
         keyTranslation.setSource(new TranslationValueRepresentation(EN, "translation"));
         keyTranslation.setTarget(new TranslationValueRepresentation(FR, "traduction"));
-        jsonTranslation = new JSONObject(keyTranslation);
+        jsonTranslation = (JSONObject) JSONObject.wrap(keyTranslation);
     }
 
-    @RunAsClient
     @Test
     public void get_create_update_translations() throws JSONException {
         httpPost("keys", jsonKey.toString(), 201);
@@ -74,7 +71,6 @@ public class TranslationsResourceIT extends AbstractI18nRestIT {
      * 4) Update en translation => key is still outdated
      * 5) Update fr translation => key is no longer outdated
      */
-    @RunAsClient
     @Test
     public void outdated_scenario() throws JSONException {
         httpPost("keys", jsonKey.toString(), 201);
@@ -121,7 +117,6 @@ public class TranslationsResourceIT extends AbstractI18nRestIT {
         Assertions.assertThat(actual.getBoolean("outdated")).isEqualTo(outdated);
         return response;
     }
-
 
     /**
      * Sends an HTTP put request to update the translation for the given locale.

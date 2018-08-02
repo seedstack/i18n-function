@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2013-2016, The SeedStack authors <http://seedstack.org>
+/*
+ * Copyright © 2013-2018, The SeedStack authors <http://seedstack.org>
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -7,7 +7,7 @@
  */
 package org.seedstack.i18n.internal.domain.model.locale;
 
-
+import com.ibm.icu.util.ULocale;
 import org.seedstack.business.domain.GenericFactory;
 
 /**
@@ -40,5 +40,5 @@ public interface LocaleFactory extends GenericFactory<Locale> {
      */
     Locale createFromLanguageAndRegion(String language, String region);
 
-    Locale createFromLocale(java.util.Locale locale);
+    Locale createFromLocale(ULocale locale);
 }

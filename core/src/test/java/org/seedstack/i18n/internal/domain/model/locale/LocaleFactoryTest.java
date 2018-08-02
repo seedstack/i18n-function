@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2013-2016, The SeedStack authors <http://seedstack.org>
+/*
+ * Copyright © 2013-2018, The SeedStack authors <http://seedstack.org>
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -7,6 +7,7 @@
  */
 package org.seedstack.i18n.internal.domain.model.locale;
 
+import com.ibm.icu.util.ULocale;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -54,8 +55,7 @@ public class LocaleFactoryTest {
 
     @Test
     public void testCreateFromLocale() {
-        java.util.Locale japLocale = new java.util.Locale("ja", "JP", "JP");
-        Locale locale = localeFactory.createFromLocale(japLocale);
+        Locale locale = localeFactory.createFromLocale(new ULocale("ja", "JP", "JP"));
         Assertions.assertThat(locale.getId()).isEqualTo("ja-JP-JP-#u-ca-japanese");
         Assertions.assertThat(locale.getLanguage()).isEqualTo("日本語 (日本,JP)");
         Assertions.assertThat(locale.getEnglishLanguage()).isEqualTo("Japanese (Japan,JP)");
