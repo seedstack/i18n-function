@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2013-2016, The SeedStack authors <http://seedstack.org>
+/*
+ * Copyright © 2013-2018, The SeedStack authors <http://seedstack.org>
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -7,10 +7,10 @@
  */
 package org.seedstack.i18n.internal.infrastructure.service;
 
+import mockit.Deencapsulation;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.util.reflection.Whitebox;
 import org.seedstack.i18n.I18nConfig;
 import org.seedstack.i18n.LocalizationService;
 import org.seedstack.i18n.internal.domain.model.key.Key;
@@ -40,7 +40,7 @@ public class ICULocalizationServiceTest {
         mockLocaleService();
         keyRepository = mock(KeyRepository.class);
         TranslationService translationService = new TranslationServiceImpl(keyRepository, localeService);
-        Whitebox.setInternalState(translationService, "i18nConfig", new I18nConfig());
+        Deencapsulation.setField(translationService, "i18nConfig", new I18nConfig());
         localizationService = new ICULocalizationService(localeService, translationService);
     }
 
