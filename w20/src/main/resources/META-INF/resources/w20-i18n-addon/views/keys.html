@@ -3,21 +3,22 @@
 <div class="container-full container-main-title">
     <div>
         <div class="menu-wrapper">
-            <a data-ng-href="i18n/locales"
-                    class="menu-item">
+            <button data-ng-click="goTo('i18n-addon/i18n')"
+                    class="btn btn-link menu-item enabled-link">
                 {{ "application.view.seed-i18n.dashboard" | localize }}
-            </a>
-            <span class="menu-item big">
+            </button>
+            <div class="menu-item big">
                 {{ "application.view.seed-i18n.keys" | localize }}
-            </span>
-            <a data-ng-href="i18n/translations"
-                    class="menu-item" data-ng-class="{'disabled-link': !allowTranslate()}">
+            </div>
+            <button data-ng-click="goTo('i18n-addon/translate')"
+                    class="btn btn-link menu-item"
+                    data-ng-class="{'disabled-link': !allowTranslate(), 'enabled-link': allowTranslate()}">
                 {{ "application.view.seed-i18n.translate" | localize }}
-            </a>
-            <a data-ng-href="i18n/statistics"
-                    class="menu-item">
-                {{ "application.view.seed-i18n.statistics" | localize }}
-            </a>
+            </button>
+            <button data-ng-click="goTo('i18n-addon/statistic')"
+                    class="btn btn-link menu-item enabled-link">
+                {{ "application.view.seed-i18n.statistic" | localize }}
+            </button>
 
             <div class="pull-right add-keys">
                 <a  class="btn btn-link"
@@ -171,7 +172,7 @@
             </form>
         </div>
     </div>
-    <div data-ng-hide="!keys.length || addKey || importKey" class="row" style="margin-top: 20px" data-ng-show="showKeysList">
+    <div data-ng-hide="!keys.length || addKey || importKey" class="row" data-ng-show="showKeysList">
         <div class="col-md-12">
             <div data-pagination
                  data-max-size="maxSize"

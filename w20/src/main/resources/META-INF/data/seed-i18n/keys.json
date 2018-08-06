@@ -4,7 +4,7 @@
     "name": "keys",
     "items": [
       {
-        "name": "application.view.i18n.locales",
+        "name": "application.view.i18n-addon.i18n",
         "translations": [
           {
             "locale": "en",
@@ -56,7 +56,7 @@
         ]
       },
       {
-        "name": "application.view.seed-i18n.statistics",
+        "name": "application.view.seed-i18n.statistic",
         "translations": [
           {
             "locale": "en",
@@ -203,11 +203,11 @@
         "translations": [
           {
             "locale": "en",
-            "value": "Select languages to add (ctrl for multi-selection)"
+            "value": "Select languages to add (hold Ctrl for multiple)..."
           },
           {
             "locale": "fr",
-            "value": "Sélectionner les langues à ajouter (ctrl pour séléction multiple)"
+            "value": "Sélectionner les langues à ajouter (maintenir Ctrl pour séléction multiple)"
           }
         ]
       },
@@ -593,11 +593,11 @@
         "translations": [
           {
             "locale": "en",
-            "value": "Ensure that a default locale is set and at least an additional locale is defined"
+            "value": "Be sure to set a default locale and application locales to translate"
           },
           {
             "locale": "fr",
-            "value": "Vérifiez qu'il y a une locale par défaut et au moins une locale additionelle"
+            "value": "Définissez une locale par défaut ainsi que des locales d'applicatons"
           }
         ]
       },
