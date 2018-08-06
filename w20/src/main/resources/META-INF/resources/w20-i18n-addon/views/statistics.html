@@ -2,16 +2,16 @@
 <div data-ng-show="authorization.hasPermission('seed-w20', ['seed', 'i18n', 'translation', 'read']) && authentication.isAuthentifiable()">
     <div class="container-full container-main-title">
             <div class="menu-wrapper">
-                <a data-ng-href="i18n/locales" class="menu-item">
-                {{ "application.view.seed-i18n.dashboard" | localize }}
+                <a data-ng-href="seed-i18n" class="menu-item">
+                {{ "application.view.seed-i18n.locales" | localize }}
                 </a>
-                <a data-ng-href="i18n/keys"
+                <a data-ng-href="seed-i18n/keys"
                         class="menu-item">
                     {{ "application.view.seed-i18n.keys" | localize }}
                 </a>
-                <a data-ng-href="i18n/translations"
+                <a data-ng-href="seed-i18n/translations"
                         class="menu-item" data-ng-class="{'disabled-link': !allowTranslate()}">
-                    {{ "application.view.seed-i18n.translate" | localize }}
+                    {{ "application.view.seed-i18n.translations" | localize }}
                 </a>
                 <span class="menu-item big">
                     {{ "application.view.seed-i18n.statistics" | localize }}

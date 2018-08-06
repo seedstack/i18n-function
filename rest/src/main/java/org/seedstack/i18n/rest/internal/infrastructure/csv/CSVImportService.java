@@ -58,7 +58,7 @@ public class CSVImportService implements ImportService {
         List<CSVRepresentation> CSVRepresentations = parser.parse(inputStream, CSVRepresentation.class);
         for (CSVRepresentation dto : CSVRepresentations) {
             Key key = fluentAssembler.merge(dto).into(Key.class).fromRepository().orFromFactory();
-            keyRepository.persist(key);
+            keyRepository.add(key);
         }
         return CSVRepresentations.size();
     }

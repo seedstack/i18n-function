@@ -17,21 +17,21 @@ class LocaleFactoryDefault extends BaseFactory<Locale> implements LocaleFactory 
 
     @Override
     public Locale createFromLanguage(String language) {
-        return createFromLocale(new ULocale(language));
+        return createFromULocale(new ULocale(language));
     }
 
     @Override
     public Locale createFromLanguageAndRegion(String language, String region) {
-        return createFromLocale(new ULocale(language, region));
+        return createFromULocale(new ULocale(language, region));
     }
 
     @Override
     public Locale createFromCode(String localeCode) {
-        return this.createFromLocale(ULocale.forLanguageTag(localeCode));
+        return this.createFromULocale(ULocale.forLanguageTag(localeCode));
     }
 
     @Override
-    public Locale createFromLocale(ULocale locale) {
+    public Locale createFromULocale(ULocale locale) {
         String normalizedLocaleCode = locale.toLanguageTag();
         String nativeLanguageName = locale.getDisplayName(locale);
         String englishLanguageName = locale.getDisplayName(ULocale.ENGLISH);

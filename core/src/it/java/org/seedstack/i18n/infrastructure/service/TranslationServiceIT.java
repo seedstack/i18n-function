@@ -87,6 +87,6 @@ public class TranslationServiceIT {
         for (String locale : localeService.getAvailableLocales()) {
             localeService.deleteLocale(locale);
         }
-        keyRepository.deleteAll();
+        keyRepository.clear();
     }
 }

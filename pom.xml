@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.seedstack.poms</groupId>
         <artifactId>parent-internal</artifactId>
-        <version>3.4.1-SNAPSHOT</version>
+        <version>3.4.2-SNAPSHOT</version>
     </parent>
 
     <groupId>org.seedstack.addons.i18n</groupId>
@@ -23,11 +23,12 @@
     <packaging>pom</packaging>
 
     <properties>
-        <seed.version>3.6.2</seed.version>
+        <seed.version>3.7.0</seed.version>
         <business.version>4.2.1</business.version>
+        <modelmapper.version>1.0.0</modelmapper.version>
         <io.version>3.0.0</io.version>
         <w20-bridge.version>3.2.2</w20-bridge.version>
-        <jpa.version>4.0.0</jpa.version>
+        <jpa.version>4.0.3</jpa.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
 
         <compatibility.skip>true</compatibility.skip>
@@ -70,7 +71,9 @@
                             <licenseMerge>Apache 2|Apache License Version 2.0</licenseMerge>
                             <licenseMerge>Apache 2|Apache License, version 2.0</licenseMerge>
                             <licenseMerge>Apache 2|Apache 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|Apache License, 2.0</licenseMerge>
                             <licenseMerge>BSD|The New BSD License</licenseMerge>
+                            <licenseMerge>CDDL|Common Development and Distribution License (CDDL), Version 1.1</licenseMerge>
                             <licenseMerge>CDDL|CDDL + GPLv2 with classpath exception</licenseMerge>
                             <licenseMerge>CDDL|CDDL+GPL License</licenseMerge>
                             <licenseMerge>CDDL|CDDL 1.1</licenseMerge>
@@ -86,6 +89,8 @@
                             <licenseMerge>IGNORED_LICENSE|GPL2 w/ CPE</licenseMerge>
                             <licenseMerge>IGNORED_LICENSE|GNU General Public License, version 2 (GPL2), with the classpath exception</licenseMerge>
                             <licenseMerge>IGNORED_LICENSE|CDDL/GPLv2+CE</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|Modified BSD</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|The GNU General Public License (GPL), Version 2, With Classpath Exception</licenseMerge>
                         </licenseMerges>
                     </configuration>
                 </plugin>

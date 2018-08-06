@@ -48,7 +48,7 @@ public class LocalizationServiceFallbackIT {
 
         Key key = keyFactory.createKey("key");
         key.addTranslation("fr", "youpi");
-        keyRepository.persist(key);
+        keyRepository.add(key);
 
         String actualTranslation = localizationService.localize("fr-BE", "key");
 
@@ -68,7 +68,7 @@ public class LocalizationServiceFallbackIT {
     @After
     public void clean() {
         for (Key key : keyRepository.loadAll()) {
-            keyRepository.delete(key);
+            keyRepository.remove(key);
         }
         for (String locale : localeService.getAvailableLocales()) {
             localeService.deleteLocale(locale);

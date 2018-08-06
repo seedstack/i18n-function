@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.i18n.internal.infrastructure.service;
 
 import com.ibm.icu.util.LocaleMatcher;
@@ -40,7 +41,7 @@ class ICULocaleService implements LocaleService {
 
     @Override
     public boolean isAvailable(String localeCode) {
-        return localeCode != null && localeRepository.load(localeCode) != null;
+        return localeCode != null && localeRepository.contains(localeCode);
     }
 
     @Override
@@ -57,7 +58,7 @@ class ICULocaleService implements LocaleService {
         Set<String> supportedLocales = new HashSet<>();
         ULocale[] locales = ULocale.getAvailableLocales();
         for (ULocale locale : locales) {
-            supportedLocales.add(localeFactory.createFromLocale(locale).getId());
+            supportedLocales.add(localeFactory.createFromULocale(locale).getId());
         }
         return supportedLocales;
     }
@@ -80,9 +81,9 @@ class ICULocaleService implements LocaleService {
     @Override
     public void addLocale(String locale) {
         checkIsNotEmpty(locale);
-        if (localeRepository.load(locale) == null) {
+        if (!localeRepository.contains(locale)) {
             Locale newLocale = localeFactory.createFromCode(locale);
-            localeRepository.persist(newLocale);
+            localeRepository.add(newLocale);
         }
     }
 
@@ -95,10 +96,7 @@ class ICULocaleService implements LocaleService {
     @Override
     public void deleteLocale(String locale) {
         checkIsNotEmpty(locale);
-        Locale localeToDelete = localeRepository.load(locale);
-        if (localeToDelete != null) {
-            localeRepository.delete(localeToDelete);
-        }
+        localeRepository.get(locale).ifPresent(localeRepository::remove);
     }
 
     @Override

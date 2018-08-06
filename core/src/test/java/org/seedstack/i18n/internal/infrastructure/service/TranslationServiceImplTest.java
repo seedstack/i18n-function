@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.i18n.internal.infrastructure.service;
 
 import static org.junit.Assert.fail;
@@ -67,8 +68,8 @@ public class TranslationServiceImplTest {
         key.addTranslation(locale, value);
         new Expectations() {
             {
-                keyRepository.load(keyName);
-                result = key;
+                keyRepository.get(keyName);
+                result = Optional.of(key);
                 minTimes = 0;
             }
         };
@@ -185,8 +186,6 @@ public class TranslationServiceImplTest {
         } catch (IllegalArgumentException e) {
             Assertions.assertThat(e).hasMessage("The locale can't be null or empty");
         }
-
-        underTest.translate("foo", "bar", null); // accepts null for translation
     }
 
     @Test
@@ -204,8 +203,6 @@ public class TranslationServiceImplTest {
         } catch (IllegalArgumentException e) {
             Assertions.assertThat(e).hasMessage("The locale can't be null or empty");
         }
-
-        underTest.translate("foo", "bar", ""); // accepts empty for translation
     }
 
     @Test
@@ -213,8 +210,8 @@ public class TranslationServiceImplTest {
         final Key key = new Key(KEY1);
         new Expectations() {
             {
-                keyRepository.load(KEY1);
-                result = key;
+                keyRepository.get(KEY1);
+                result = Optional.of(key);
             }
         };
         underTest.translate(KEY1, FR, FR_TRANSLATION);
@@ -249,8 +246,8 @@ public class TranslationServiceImplTest {
 
         new Expectations() {
             {
-                keyRepository.load(KEY1);
-                result = key;
+                keyRepository.get(KEY1);
+                result = Optional.of(key);
             }
         };
         underTest.translate(KEY1, FR, FR_TRANSLATION);
@@ -269,8 +266,8 @@ public class TranslationServiceImplTest {
 
         new Expectations() {
             {
-                keyRepository.load(KEY1);
-                result = key;
+                keyRepository.get(KEY1);
+                result = Optional.of(key);
             }
         };
         underTest.translate(KEY1, FR, FR_TRANSLATION);

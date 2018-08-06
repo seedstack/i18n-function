@@ -5,12 +5,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.i18n.rest.internal.infrastructure.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
-import org.seedstack.business.assembler.LegacyAssembler;
+import org.seedstack.business.assembler.Assembler;
 import org.seedstack.i18n.internal.domain.model.locale.Locale;
 import org.seedstack.i18n.internal.domain.model.locale.LocaleRepository;
 import org.seedstack.i18n.rest.internal.locale.LocaleFinder;
@@ -29,13 +30,13 @@ class LocaleJpaFinder implements LocaleFinder {
     private LocaleRepository localeRepository;
 
     @Inject
-    private LegacyAssembler<Locale, LocaleRepresentation> assembler;
+    private Assembler<Locale, LocaleRepresentation> assembler;
 
     @Override
     public LocaleRepresentation findDefaultLocale() {
         Locale locale = localeRepository.getDefaultLocale();
         if (locale != null) {
-            return assembler.assembleDtoFromAggregate(locale);
+            return assembler.createDtoFromAggregate(locale);
         } else {
             return null;
         }
@@ -46,17 +47,13 @@ class LocaleJpaFinder implements LocaleFinder {
         List<Locale> locales = localeRepository.loadAll();
         List<LocaleRepresentation> localeRepresentations = new ArrayList<>();
         for (Locale locale : locales) {
-            localeRepresentations.add(assembler.assembleDtoFromAggregate(locale));
+            localeRepresentations.add(assembler.createDtoFromAggregate(locale));
         }
         return localeRepresentations;
     }
 
     @Override
     public LocaleRepresentation findAvailableLocale(String localeCode) {
-        Locale locale = localeRepository.load(localeCode);
-        if (locale != null) {
-            return assembler.assembleDtoFromAggregate(locale);
-        }
-        return null;
+        return localeRepository.get(localeCode).map(assembler::createDtoFromAggregate).orElse(null);
     }
 }

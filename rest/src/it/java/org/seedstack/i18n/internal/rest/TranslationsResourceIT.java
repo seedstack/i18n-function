@@ -7,6 +7,8 @@
  */
 package org.seedstack.i18n.internal.rest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.Response;
 import java.util.UUID;
 import org.assertj.core.api.Assertions;
@@ -33,16 +35,16 @@ public class TranslationsResourceIT extends AbstractI18nRestIT {
     private JSONObject jsonTranslation;
 
     @Before
-    public void before() throws JSONException {
+    public void before() throws JSONException, JsonProcessingException {
         keyName = UUID.randomUUID().toString();
 
         KeyRepresentation keyRepresentation = new KeyRepresentation(keyName, EN, "translation", "comment");
-        jsonKey = (JSONObject) JSONObject.wrap(keyRepresentation);
+        jsonKey = new JSONObject(new ObjectMapper().writeValueAsString(keyRepresentation));
 
         TranslationRepresentation keyTranslation = new TranslationRepresentation(keyName, "comment");
         keyTranslation.setSource(new TranslationValueRepresentation(EN, "translation"));
         keyTranslation.setTarget(new TranslationValueRepresentation(FR, "traduction"));
-        jsonTranslation = (JSONObject) JSONObject.wrap(keyTranslation);
+        jsonTranslation = new JSONObject(new ObjectMapper().writeValueAsString(keyTranslation));
     }
 
     @Test

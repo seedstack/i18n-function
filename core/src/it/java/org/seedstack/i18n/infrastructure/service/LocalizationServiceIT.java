@@ -111,7 +111,7 @@ public class LocalizationServiceIT {
         key1.setComment(COMMENT);
         key1.addTranslation(FR, frValue);
         key1.addTranslation(FR_FR, fr_FRValue);
-        repository.persist(key1);
+        repository.add(key1);
 
         String localizedKey = localizationService.localize(FR_FR, keyID1);
         Assertions.assertThat(localizedKey).isEqualTo(fr_FRValue);
@@ -131,7 +131,7 @@ public class LocalizationServiceIT {
         Key key = factory.createKey("key");
         key.addTranslation(EN, translation_en);
         key.addTranslation(EN_GB, translation_en_GB);
-        repository.persist(key);
+        repository.add(key);
 
         String requestedTranslation = localizationService.localize(EN, key.getId());
         Assertions.assertThat(requestedTranslation).isEqualTo(translation_en);
@@ -141,7 +141,7 @@ public class LocalizationServiceIT {
 
         localeService.deleteLocale(EN);
         localeService.deleteLocale(EN_GB);
-        repository.delete(key);
+        repository.remove(key);
     }
 
     @After

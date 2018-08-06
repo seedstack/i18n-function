@@ -87,7 +87,7 @@ public class KeyJpaFinderIT {
         keys.add(key);
 
         for (Key keyToPersist : keys) {
-            keyRepository.persist(keyToPersist);
+            keyRepository.add(keyToPersist);
         }
     }
 

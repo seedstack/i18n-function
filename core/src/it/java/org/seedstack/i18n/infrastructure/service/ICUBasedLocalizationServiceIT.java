@@ -73,7 +73,7 @@ public class ICUBasedLocalizationServiceIT {
             localeService.deleteLocale(locale);
         }
         for (Key key : repository.loadAll()) {
-            repository.delete(key);
+            repository.remove(key);
         }
     }
 
@@ -158,7 +158,7 @@ public class ICUBasedLocalizationServiceIT {
 
         Key key = factory.createKey(KEY);
         key.addTranslation(FR_FR, messageValue);
-        repository.persist(key);
+        repository.add(key);
 
         assertEquals(messageValue, localizationService.localize(FR_FR, KEY));
     }
@@ -169,7 +169,7 @@ public class ICUBasedLocalizationServiceIT {
         assertEquals("[" + key + "]", localizationService.localize(FR_FR, KEY));
 
         Key key1 = factory.createKey(key);
-        repository.persist(key1);
+        repository.add(key1);
         assertEquals("[" + key + "]", localizationService.localize(FR_FR, KEY));
     }
 
@@ -188,7 +188,7 @@ public class ICUBasedLocalizationServiceIT {
         Key key = factory.createKey(KEY);
         key.addTranslation(EN_US, messageValueUS);
         key.addTranslation(FR_FR, messageValueFR);
-        repository.persist(key);
+        repository.add(key);
 
         assertEquals("At 5:52:05 PM on May 28, 2013, there was a disturbance in the Force on planet 7. The incident cost $17.36", localizationService.localize(EN_US, KEY, arguments));
 
@@ -209,7 +209,7 @@ public class ICUBasedLocalizationServiceIT {
 
         Key key1 = factory.createKey(key);
         key1.addTranslation(EN_US, messageValueUS);
-        repository.persist(key1);
+        repository.add(key1);
 
         assertEquals("There are no files on disk \"MyDisk\".", localizationService.localize(EN_US, KEY, arguments1));
 

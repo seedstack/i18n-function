@@ -34,15 +34,9 @@ public class KeyJpaRepository extends BaseJpaRepository<Key, String> implements 
     }
 
     @Override
-    public void deleteAll() {
-        getEntityManager().createQuery("DELETE FROM org.seedstack.i18n.internal.domain.model.key.Key").executeUpdate();
-        invalidCache();
-    }
-
-    @Override
     public void delete(List<Key> keys) {
         for (Key key : keys) {
-            delete(key);
+            remove(key);
         }
         invalidCache();
     }
@@ -54,25 +48,25 @@ public class KeyJpaRepository extends BaseJpaRepository<Key, String> implements 
     }
 
     @Override
-    public void delete(String id) {
+    public void remove(String id) {
         super.remove(id);
         invalidCache();
     }
 
     @Override
-    public void delete(Key aggregate) {
+    public void remove(Key aggregate) {
         super.remove(aggregate);
         invalidCache();
     }
 
     @Override
-    public void persist(Key aggregate) {
+    public void add(Key aggregate) {
         super.add(aggregate);
         invalidCache();
     }
 
     @Override
-    public Key save(Key aggregate) {
+    public Key update(Key aggregate) {
         invalidCache();
         return super.update(aggregate);
     }

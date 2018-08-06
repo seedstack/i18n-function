@@ -40,7 +40,7 @@ public class LocaleAssemblerTest {
             }
         };
 
-        LocaleRepresentation localeRepresentation = underTest.assembleDtoFromAggregate(locale);
+        LocaleRepresentation localeRepresentation = underTest.createDtoFromAggregate(locale);
         Assertions.assertThat(localeRepresentation.getCode()).isEqualTo("fr");
         Assertions.assertThat(localeRepresentation.getLanguage()).isEqualTo("français");
         Assertions.assertThat(localeRepresentation.getEnglishLanguage()).isEqualTo("French");

@@ -48,7 +48,7 @@ public class ExportDataIT {
         Key key1 = keyFactory.createKey(KEY_NAME);
         key1.addTranslation(FR, "key1fr");
         key1.addTranslation(EN, "key1en");
-        keyRepository.persist(key1);
+        keyRepository.add(key1);
     }
 
     @Test
@@ -58,14 +58,13 @@ public class ExportDataIT {
         dataManager.exportData(outputStream, "seed-i18n");
 
         // Remove data
-        keyRepository.delete(keyRepository.load(KEY_NAME));
+        keyRepository.remove(KEY_NAME);
 
         ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
         dataManager.importData(inputStream);
 
         // Check imported data
-        Key loadedKey = keyRepository.load(KEY_NAME);
-        Assertions.assertThat(loadedKey).isNotNull();
+        Assertions.assertThat(keyRepository.get(KEY_NAME)).isNotEmpty();
     }
 
 }

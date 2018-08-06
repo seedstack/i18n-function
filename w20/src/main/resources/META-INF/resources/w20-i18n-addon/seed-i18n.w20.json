@@ -1,14 +1,14 @@
 {
-  "id": "i18n-addon",
+  "id": "seed-i18n",
   "name": "SeedStack internationalization add-on",
   "author": "Yves DAUTREMAY, Adrien LAUER, Kavi RAMYEAD and Pierre THIROUIN",
   "modules": {
     "style": {
-      "path": "[css]!{i18n-addon}/style/i18n.css",
+      "path": "[css]!{seed-i18n}/style/i18n.css",
       "autoload": true
     },
     "i18nTranslator": {
-      "path": "{i18n-addon}/modules/i18nTranslator",
+      "path": "{seed-i18n}/modules/i18n",
       "autoload": true,
       "config": {
         "apiPrefix": "${seed-rest-path-slash:}seed-i18n"
@@ -21,26 +21,26 @@
     ]
   },
   "routes": {
+    "": {
+      "templateUrl": "{seed-i18n}/views/locales.html",
+      "controller": "SeedI18nLocalesController",
+      "security": "hasPermission('seed-w20', ['seed','i18n','locale','read'])"
+    },
     "keys": {
-      "templateUrl": "{i18n-addon}/views/keys.html",
+      "templateUrl": "{seed-i18n}/views/keys.html",
       "controller": "SeedI18nKeysController",
       "security": "hasPermission('seed-w20', ['seed','i18n','key','read'])",
       "hidden": true
     },
-    "translate": {
-      "templateUrl": "{i18n-addon}/views/translate.html",
-      "controller": "SeedI18nTranslateController",
+    "translations": {
+      "templateUrl": "{seed-i18n}/views/translations.html",
+      "controller": "SeedI18nTranslationsController",
       "security": "hasPermission('seed-w20', ['seed','i18n','translation','read'])",
       "hidden": true
     },
-    "i18n": {
-      "templateUrl": "{i18n-addon}/views/dashboard.html",
-      "controller": "SeedI18nDashboardController",
-      "security": "hasPermission('seed-w20', ['seed','i18n','locale','read'])"
-    },
-    "statistic": {
-      "templateUrl": "{i18n-addon}/views/statistic.html",
-      "controller": "SeedI18nStatisticController",
+    "statistics": {
+      "templateUrl": "{seed-i18n}/views/statistics.html",
+      "controller": "SeedI18nStatisticsController",
       "security": "hasPermission('seed-w20', ['seed','i18n','translation','read'])",
       "hidden": true
     }

@@ -86,7 +86,6 @@ class KeyJpaFinder extends BaseRangeFinder<KeyRepresentation, Map<String, Object
 
     @Override
     public KeyRepresentation findKeyWithName(String name) {
-        Key key = keyRepository.load(name);
-        return key != null ? keyAssembler.assemble(key) : null;
+        return keyRepository.get(name).map(keyAssembler::assemble).orElse(null);
     }
 }

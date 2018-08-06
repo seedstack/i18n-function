@@ -5,9 +5,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.i18n.internal.domain.model.key;
 
-import org.seedstack.business.domain.GenericFactory;
+import org.seedstack.business.domain.Factory;
 
 /**
  * Interface of Key factory.
@@ -15,7 +16,7 @@ import org.seedstack.business.domain.GenericFactory;
  * @author pierre.thirouin@ext.mpsa.com
  *         Date: 20/11/13
  */
-public interface KeyFactory extends GenericFactory<Key> {
+public interface KeyFactory extends Factory<Key> {
 
     /**
      * Create a Key.

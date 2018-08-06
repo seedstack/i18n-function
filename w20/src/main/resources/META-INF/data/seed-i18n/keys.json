@@ -4,7 +4,7 @@
     "name": "keys",
     "items": [
       {
-        "name": "application.view.i18n-addon.i18n",
+        "name": "application.view.seed-i18n.",
         "translations": [
           {
             "locale": "en",
@@ -17,7 +17,7 @@
         ]
       },
       {
-        "name": "application.view.seed-i18n.dashboard",
+        "name": "application.view.seed-i18n.locales",
         "translations": [
           {
             "locale": "en",
@@ -43,20 +43,20 @@
         ]
       },
       {
-        "name": "application.view.seed-i18n.translate",
+        "name": "application.view.seed-i18n.translations",
         "translations": [
           {
             "locale": "en",
-            "value": "Translate keys"
+            "value": "Translations"
           },
           {
             "locale": "fr",
-            "value": "Traduire"
+            "value": "Traductions"
           }
         ]
       },
       {
-        "name": "application.view.seed-i18n.statistic",
+        "name": "application.view.seed-i18n.statistics",
         "translations": [
           {
             "locale": "en",

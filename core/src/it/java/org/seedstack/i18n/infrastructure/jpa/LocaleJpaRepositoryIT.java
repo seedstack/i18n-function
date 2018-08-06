@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.i18n.infrastructure.jpa;
 
 import com.google.inject.Inject;
@@ -49,38 +50,37 @@ public class LocaleJpaRepositoryIT {
     public void cleanUp() {
         List<Locale> locales = localeRepository.loadAll();
         for (Locale locale : locales) {
-            localeRepository.delete(locale);
+            localeRepository.remove(locale);
         }
     }
 
     @Test
     public void persist_then_load() {
-        localeRepository.persist(expectedLocale);
-        Locale locale = localeRepository.load(expectedLocale.getId());
+        localeRepository.add(expectedLocale);
+        Locale locale = localeRepository.get(expectedLocale.getId()).orElseThrow(IllegalArgumentException::new);
         Assertions.assertThat(locale).isEqualTo(expectedLocale);
     }
 
     @Test
     public void count() {
-        localeRepository.persist(expectedLocale);
-        Long count = localeRepository.count();
+        localeRepository.add(expectedLocale);
+        Long count = localeRepository.size();
         Assertions.assertThat(count).isEqualTo(1);
     }
 
     @Test
     public void save_then_load() {
         localeRepository.addOrUpdate(expectedLocale);
-        Locale locale = localeRepository.load(expectedLocale.getId());
+        Locale locale = localeRepository.get(expectedLocale.getId()).orElseThrow(IllegalArgumentException::new);
         Assertions.assertThat(locale.getEnglishLanguage()).isEqualTo("French");
     }
 
     @Test
     public void persist_load_then_delete() {
-        localeRepository.persist(expectedLocale);
-        Locale locale = localeRepository.load(localeId);
+        localeRepository.add(expectedLocale);
+        Locale locale = localeRepository.get(localeId).orElseThrow(IllegalArgumentException::new);
         Assertions.assertThat(locale).isNotNull();
-        localeRepository.delete(locale);
-        locale = localeRepository.load(localeId);
-        Assertions.assertThat(locale).isNull();
+        localeRepository.remove(locale);
+        Assertions.assertThat(localeRepository.get(localeId)).isEmpty();
     }
 }

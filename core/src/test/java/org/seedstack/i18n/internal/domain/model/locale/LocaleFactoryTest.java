@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.i18n.internal.domain.model.locale;
 
 import com.ibm.icu.util.ULocale;
@@ -55,10 +56,10 @@ public class LocaleFactoryTest {
 
     @Test
     public void testCreateFromLocale() {
-        Locale locale = localeFactory.createFromLocale(new ULocale("ja", "JP", "JP"));
-        Assertions.assertThat(locale.getId()).isEqualTo("ja-JP-JP-#u-ca-japanese");
-        Assertions.assertThat(locale.getLanguage()).isEqualTo("日本語 (日本,JP)");
-        Assertions.assertThat(locale.getEnglishLanguage()).isEqualTo("Japanese (Japan,JP)");
+        Locale locale = localeFactory.createFromULocale(new ULocale("ja", "JP", "JP"));
+        Assertions.assertThat(locale.getId()).isEqualTo("ja-JP-x-lvariant-jp");
+        Assertions.assertThat(locale.getLanguage()).isEqualTo("日本語(日本，JP)");
+        Assertions.assertThat(locale.getEnglishLanguage()).isEqualTo("Japanese (Japan, JP)");
     }
 
     @Test

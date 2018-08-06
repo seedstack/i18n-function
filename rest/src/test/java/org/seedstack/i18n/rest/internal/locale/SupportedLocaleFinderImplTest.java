@@ -22,7 +22,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.seedstack.business.assembler.LegacyAssembler;
+import org.seedstack.business.assembler.Assembler;
 import org.seedstack.i18n.internal.domain.model.locale.Locale;
 import org.seedstack.i18n.internal.domain.model.locale.LocaleFactory;
 
@@ -39,7 +39,7 @@ public class SupportedLocaleFinderImplTest {
     @Injectable
     private LocaleFactory localeFactory;
     @Injectable
-    private LegacyAssembler<Locale, LocaleRepresentation> localeAssembler;
+    private Assembler<Locale, LocaleRepresentation> localeAssembler;
     @Mocked
     private Locale enLocale;
     @Mocked
@@ -99,17 +99,17 @@ public class SupportedLocaleFinderImplTest {
     }
 
     public void mockAssemblerForFR() {
-        mockAssembler(ULocale.FRANCE, frLocale, frLocaleRepresentation);
+        mockAssembler(ULocale.FRENCH, frLocale, frLocaleRepresentation);
     }
 
     public void mockAssembler(final ULocale uLocale, final Locale locale,
             final LocaleRepresentation localeRepresentation) {
         new Expectations() {
             {
-                localeFactory.createFromLocale(uLocale);
+                localeFactory.createFromULocale(uLocale);
                 result = locale;
 
-                localeAssembler.assembleDtoFromAggregate(locale);
+                localeAssembler.createDtoFromAggregate(locale);
                 result = localeRepresentation;
             }
         };
@@ -153,7 +153,7 @@ public class SupportedLocaleFinderImplTest {
                 localeFactory.createFromCode(localeCode);
                 result = locale;
 
-                localeAssembler.assembleDtoFromAggregate(locale);
+                localeAssembler.createDtoFromAggregate(locale);
                 result = localeRepresentation;
             }
         };
