@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.seedstack.poms</groupId>
         <artifactId>parent-internal</artifactId>
-        <version>3.4.2-SNAPSHOT</version>
+        <version>3.4.2</version>
     </parent>
 
     <groupId>org.seedstack.addons.i18n</groupId>
@@ -27,7 +27,7 @@
         <business.version>4.2.1</business.version>
         <modelmapper.version>1.0.0</modelmapper.version>
         <io.version>3.0.0</io.version>
-        <w20-bridge.version>3.2.2</w20-bridge.version>
+        <w20-bridge.version>3.2.5</w20-bridge.version>
         <jpa.version>4.0.3</jpa.version>
         <hibernate.version>5.2.10.Final</hibernate.version>
 

@@ -264,10 +264,9 @@
 
 .disabled-link {
     color: grey !important;
-}
-
-.enabled_link {
-    color: black !important;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
 }
 
 .menu-item {

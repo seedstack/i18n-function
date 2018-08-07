@@ -2,25 +2,24 @@
     <div data-ng-show="hide"> {{'application.view.seed-i18n.dashboard.error' | localize }} </div>
     <div data-ng-show="authorization.hasPermission('seed-w20', ['seed', 'i18n', 'locale', 'read']) && authentication.isAuthentifiable()">
         <div class="container-full container-main-title">
-            <div>
-                <div class="menu-wrapper">
-                    <span class="menu-item big">
-                        {{ "application.view.seed-i18n.locales" | localize }}
-                    </span>
-                    <a data-ng-href="seed-i18n/keys"
-                            class="menu-item">
-                        {{ "application.view.seed-i18n.keys" | localize }}
-                    </a>
-                    <a data-ng-href="seed-i18n/translations"
-                            class="menu-item" data-ng-class="{'disabled-link': !allowTranslate()}">
-                        {{ "application.view.seed-i18n.translations" | localize }}
-                    </a>
-                    <a data-ng-href="seed-i18n/statistics"
-                            class="menu-item">
-                        {{ "application.view.seed-i18n.statistics" | localize }}
-                    </a>
-                </div>
+            <div class="menu-wrapper">
+                <span class="menu-item big">
+                    {{ "application.view.seed-i18n.locales" | localize }}
+                </span>
+                <a data-ng-href="seed-i18n/keys"
+                        class="menu-item">
+                    {{ "application.view.seed-i18n.keys" | localize }}
+                </a>
+                <a data-ng-href="seed-i18n/translations"
+                        class="menu-item" data-ng-class="{'disabled-link': !allowTranslate()}">
+                    {{ "application.view.seed-i18n.translations" | localize }}
+                </a>
+                <a data-ng-href="seed-i18n/statistics"
+                        class="menu-item">
+                    {{ "application.view.seed-i18n.statistics" | localize }}
+                </a>
             </div>
+            <div class="clearfix"></div>
         </div>
         <div class="alert alert-warning"
              data-ng-show="!authorization.hasPermission('seed-w20', ['seed', 'i18n', 'locale', 'write']) && authentication.isAuthentifiable()">
