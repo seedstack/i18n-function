@@ -5,6 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.i18n.internal.domain.model.key;
 
 import java.util.HashMap;
@@ -74,8 +75,9 @@ public class Key extends BaseAggregateRoot<String> {
      * Saves or updates the translation for the specified locale.
      * If the key was outdated, checks if the key is still outdated.
      *
-     * @param locale specified the translation locale
-     * @param value  translation value
+     * @param locale        specified the translation locale
+     * @param value         translation value
+     * @param isApproximate true if the translation is not exact.
      * @return the new translation
      * @throws java.lang.IllegalArgumentException if the locale is null or empty
      *                                            or contains other characters than letters and "-".
