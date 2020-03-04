@@ -8,45 +8,45 @@
 
 
     create table SEED_I18N_KEY (
-       ID varchar2(255 char) not null,
-        DESCRIPTION varchar2(255 char),
-        OUTDATED number(1,0),
+       ID varchar(255) not null,
+        DESCRIPTION varchar(255),
+        OUTDATED boolean,
         primary key (ID)
     );
 
     create table SEED_I18N_KEY_TRANS (
-       Key_ID varchar2(255 char) not null,
-        translations_KEY_ID varchar2(255 char) not null,
-        translations_LOCALE varchar2(255 char) not null,
+       Key_ID varchar(255) not null,
+        translations_KEY_ID varchar(255) not null,
+        translations_LOCALE varchar(255) not null,
         primary key (Key_ID, translations_KEY_ID, translations_LOCALE)
     );
 
     create table SEED_I18N_LOCALE (
-       CODE varchar2(255 char) not null,
-        DEFAULT_LOCALE number(1,0),
-        ENGLISH_LANGUAGE varchar2(255 char),
-        LANGUAGE varchar2(255 char),
+       CODE varchar(255) not null,
+        DEFAULT_LOCALE boolean,
+        ENGLISH_LANGUAGE varchar(255),
+        LANGUAGE varchar(255),
         primary key (CODE)
     );
 
     create table SEED_I18N_TRANSLATION (
-       KEY_ID varchar2(255 char) not null,
-        LOCALE varchar2(255 char) not null,
-        APPROXIMATE number(1,0),
-        OUTDATED number(1,0),
-        TRANSLATION varchar2(255 char),
+       KEY_ID varchar(255) not null,
+        LOCALE varchar(255) not null,
+        APPROXIMATE boolean,
+        OUTDATED boolean,
+        TRANSLATION varchar(255),
         primary key (KEY_ID, LOCALE)
     );
 
-    alter table SEED_I18N_KEY_TRANS 
+    alter table if exists SEED_I18N_KEY_TRANS 
        add constraint UK_ta4xejyl84hjv7fx1xk3igyi2 unique (translations_KEY_ID, translations_LOCALE);
 
-    alter table SEED_I18N_KEY_TRANS 
+    alter table if exists SEED_I18N_KEY_TRANS 
        add constraint FKmu86aa2tn70mu6isua1l4prlv 
        foreign key (translations_KEY_ID, translations_LOCALE) 
        references SEED_I18N_TRANSLATION;
 
-    alter table SEED_I18N_KEY_TRANS 
+    alter table if exists SEED_I18N_KEY_TRANS 
        add constraint FKb9x21ktjcpckc3wktrlyqed1c 
        foreign key (Key_ID) 
        references SEED_I18N_KEY;

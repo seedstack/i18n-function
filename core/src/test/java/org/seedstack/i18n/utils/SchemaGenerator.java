@@ -25,13 +25,13 @@ import java.util.Map;
 public class SchemaGenerator {
 
     public static void main(String[] args) {
-        generateScript("org.hibernate.dialect.MySQL57Dialect", "mysql-create-tables.sql", true, ";");
-        generateScript("org.hibernate.dialect.Oracle10gDialect", "oracle-create-tables.sql", true, ";");
-        generateScript("org.hibernate.dialect.HSQLDialect", "hsql-create-tables.sql", false, "");
-        generateScript("org.hibernate.dialect.PostgreSQL95Dialect", "pgsql-create-tables.sql", false, "");
+        generateScript("org.hibernate.dialect.MySQL57Dialect", "mysql-create-tables.sql", true, ";", SchemaExport.Action.CREATE);
+        generateScript("org.hibernate.dialect.Oracle10gDialect", "oracle-create-tables.sql", true, ";", SchemaExport.Action.CREATE);
+        generateScript("org.hibernate.dialect.HSQLDialect", "hsql-create-tables.sql", false, "", SchemaExport.Action.BOTH);
+        generateScript("org.hibernate.dialect.PostgreSQL95Dialect", "pgsql-create-tables.sql", true, ";", SchemaExport.Action.CREATE);
     }
 
-    private static void generateScript(String dialect, String outputFile, boolean format, String delimiter) {
+    private static void generateScript(String dialect, String outputFile, boolean format, String delimiter, SchemaExport.Action action) {
         Map<String, String> settings = new HashMap<>();
         settings.put("hibernate.dialect", dialect);
         settings.put("hibernate.hbm2ddl.auto", "create");
@@ -43,8 +43,8 @@ public class SchemaGenerator {
         schemaExport.setHaltOnError(true);
         schemaExport.setFormat(format);
         schemaExport.setDelimiter(delimiter);
-        schemaExport.setOutputFile("sql_new/" + outputFile);
-        schemaExport.execute(EnumSet.of(TargetType.SCRIPT), SchemaExport.Action.CREATE, (MetadataImplementor) metadata.buildMetadata());
+        schemaExport.setOutputFile("sql/" + outputFile);
+        schemaExport.execute(EnumSet.of(TargetType.SCRIPT), action, (MetadataImplementor) metadata.buildMetadata());
 
     }
 

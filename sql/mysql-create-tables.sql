@@ -6,41 +6,47 @@
 -- file, You can obtain one at http://mozilla.org/MPL/2.0/.
 --
 
-CREATE TABLE SEED_I18N_KEY (
-	ID VARCHAR(255) NOT NULL,
-	DESCRIPTION VARCHAR(255),
-	OUTDATED VARCHAR(4),
-	PRIMARY KEY (ID)
-);
-CREATE TABLE SEED_I18N_KEY_TRANS (
-	TRANS_ID_FK VARCHAR(255) NOT NULL,
-	TRANSLATIONS_KEY_ID VARCHAR(255) NOT NULL,
-	TRANSLATIONS_LOCALE VARCHAR(255) NOT NULL,
-	PRIMARY KEY (TRANS_ID_FK,TRANSLATIONS_KEY_ID,TRANSLATIONS_LOCALE)
-);
-CREATE TABLE SEED_I18N_LOCALE (
-	CODE VARCHAR(255) NOT NULL,
-	DEFAULT_LOCALE VARCHAR(4),
-	ENGLISH_LANGUAGE VARCHAR(255),
-	LANGUAGE VARCHAR(255),
-	PRIMARY KEY (CODE)
-);
-CREATE TABLE SEED_I18N_TRANSLATION (
-	KEY_ID VARCHAR(255) NOT NULL,
-	LOCALE VARCHAR(255) NOT NULL,
-	APPROXIMATE VARCHAR(4),
-	OUTDATED VARCHAR(4),
-	TRANSLATION VARCHAR(255),
-	PRIMARY KEY (KEY_ID,LOCALE)
-);
-ALTER TABLE SEED_I18N_KEY_TRANS
-	ADD FOREIGN KEY (TRANSLATIONS_KEY_ID) 
-	REFERENCES SEED_I18N_TRANSLATION (KEY_ID);
 
-ALTER TABLE SEED_I18N_KEY_TRANS
-	ADD FOREIGN KEY (TRANS_ID_FK) 
-	REFERENCES SEED_I18N_KEY (ID);
+    create table SEED_I18N_KEY (
+       ID varchar(255) not null,
+        DESCRIPTION varchar(255),
+        OUTDATED bit,
+        primary key (ID)
+    ) engine=InnoDB;
 
-ALTER TABLE SEED_I18N_KEY_TRANS
-	ADD FOREIGN KEY (TRANSLATIONS_LOCALE) 
-	REFERENCES SEED_I18N_TRANSLATION (LOCALE);
+    create table SEED_I18N_KEY_TRANS (
+       Key_ID varchar(255) not null,
+        translations_KEY_ID varchar(255) not null,
+        translations_LOCALE varchar(255) not null,
+        primary key (Key_ID, translations_KEY_ID, translations_LOCALE)
+    ) engine=InnoDB;
+
+    create table SEED_I18N_LOCALE (
+       CODE varchar(255) not null,
+        DEFAULT_LOCALE bit,
+        ENGLISH_LANGUAGE varchar(255),
+        LANGUAGE varchar(255),
+        primary key (CODE)
+    ) engine=InnoDB;
+
+    create table SEED_I18N_TRANSLATION (
+       KEY_ID varchar(255) not null,
+        LOCALE varchar(255) not null,
+        APPROXIMATE bit,
+        OUTDATED bit,
+        TRANSLATION varchar(255),
+        primary key (KEY_ID, LOCALE)
+    ) engine=InnoDB;
+
+    alter table SEED_I18N_KEY_TRANS 
+       add constraint UK_ta4xejyl84hjv7fx1xk3igyi2 unique (translations_KEY_ID, translations_LOCALE);
+
+    alter table SEED_I18N_KEY_TRANS 
+       add constraint FKmu86aa2tn70mu6isua1l4prlv 
+       foreign key (translations_KEY_ID, translations_LOCALE) 
+       references SEED_I18N_TRANSLATION (KEY_ID, LOCALE);
+
+    alter table SEED_I18N_KEY_TRANS 
+       add constraint FKb9x21ktjcpckc3wktrlyqed1c 
+       foreign key (Key_ID) 
+       references SEED_I18N_KEY (ID);
