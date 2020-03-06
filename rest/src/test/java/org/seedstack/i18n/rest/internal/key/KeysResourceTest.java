@@ -10,7 +10,6 @@ package org.seedstack.i18n.rest.internal.key;
 import mockit.Injectable;
 import mockit.Tested;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.seedstack.i18n.internal.domain.model.key.KeyFactory;
 import org.seedstack.i18n.internal.domain.model.key.KeyRepository;
 import org.seedstack.i18n.rest.internal.shared.BadRequestException;

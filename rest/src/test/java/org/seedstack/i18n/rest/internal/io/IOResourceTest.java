@@ -19,7 +19,6 @@ import org.glassfish.jersey.media.multipart.BodyPart;
 import org.glassfish.jersey.media.multipart.ContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.seedstack.i18n.internal.domain.model.key.KeyRepository;
 import org.seedstack.i18n.rest.internal.shared.BadRequestException;
 
@@ -41,7 +40,6 @@ public class IOResourceTest {
     private BodyPart bodyPart;
     @Mocked
     private ContentDisposition contentDisposition;
-    @Mocked
     private InputStream inputStream;
 
     @Test(expected = BadRequestException.class)

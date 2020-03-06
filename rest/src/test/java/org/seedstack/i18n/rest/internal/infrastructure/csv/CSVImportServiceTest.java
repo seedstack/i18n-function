@@ -17,7 +17,6 @@ import mockit.Mocked;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.seedstack.business.assembler.FluentAssembler;
 import org.seedstack.business.assembler.dsl.MergeFromRepositoryOrFactory;
 import org.seedstack.i18n.internal.domain.model.key.Key;

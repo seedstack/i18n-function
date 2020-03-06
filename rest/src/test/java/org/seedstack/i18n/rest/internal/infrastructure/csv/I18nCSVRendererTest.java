@@ -15,7 +15,6 @@ import mockit.Expectations;
 import mockit.Mocked;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.seedstack.i18n.internal.domain.model.key.Key;
 import org.seedstack.io.supercsv.SuperCsvTemplate;
 
